@@ -1,7 +1,7 @@
 // frontend/src/index.js
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-// CI test 2
+// CI test 3
 import App from './App';
 
 const container = document.getElementById('root');
