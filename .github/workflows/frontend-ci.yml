@@ -17,20 +17,20 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      # 1. Build the *base* image (no tests yet)
-      - name: Build image for test run
+      # ---- Build the image (stop at the “base” stage, no tests yet) ----
+      - name: Build image for unit tests
         run: |
           docker build \
             --file frontend/Dockerfile \
-            --target base \          # ⚠️ build only up to “base”, not “test”
+            --target base \
             --tag frontend-test:${{ github.sha }} \
             frontend
 
-      # 2. Spin up the image and run Jest once in CI mode
+      # ---- Run the Jest test suite inside that image ----
       - name: Run unit tests
         run: |
           docker run --rm \
-            -e CI=true \             # ensures Jest exits instead of watching
+            -e CI=true \
             frontend-test:${{ github.sha }} \
             npm test -- \
               --env=jsdom \
