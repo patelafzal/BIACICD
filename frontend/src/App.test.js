@@ -4,5 +4,5 @@ import App from './App';
 
 test('App renders welcome message', () => {
   render(<App />);
-  expect(screen.getByText(/Welcome to CI\/CD Demo/i)).toBeInTheDocument();
+  expect(screen.getByText(/Welcome to CI\/CD Demo - 1/i)).toBeInTheDocument();
 });
